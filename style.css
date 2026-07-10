@@ -29,42 +29,7 @@ body {
     border-radius: 10px;
 }
 
-#countdown-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #ff6b81;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
-    background: rgba(255, 255, 255, 0.4);
-    position: relative;
-    z-index: 10000;
-}
-
-#start-btn {
-    background-color: #ff6b81;
-    color: white;
-    border: none;
-    padding: 15px 32px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(255, 107, 129, 0.5);
-    transition: transform 0.2s, background-color 0.2s;
-    margin-top: 20px;
-    position: relative;
-    z-index: 20000; /* Pushes button completely to the front layer */
-}
-
-#start-btn:active {
-    transform: scale(0.95);
-    background-color: #ff4757;
-}
-
 #celebration-screen {
-    display: none;
     height: 100vh;
     position: relative;
 }
