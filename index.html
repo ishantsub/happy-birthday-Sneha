@@ -6,25 +6,17 @@
     <title>Happy Birthday Chootu!</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onclick="startMusic()">
     <!-- Background Music -->
     <audio id="bg-music" src="back.mp3" loop></audio>
 
     <!-- Photo Collage Background (Hidden initially) -->
     <div id="collage-bg"></div>
 
-    <!-- Main Celebration Screen (Visible immediately) -->
+    <!-- Main Celebration Screen -->
     <div id="celebration-screen" style="display: block;">
         <div class="cake-scene">
             <img src="1000328906.png" id="cake" alt="Birthday Cake">
-            
-            <!-- Interactive Candles -->
-            <div id="candles">
-                <div class="candle" onclick="blowCandle(this)">🔥</div>
-                <div class="candle" onclick="blowCandle(this)">🔥</div>
-                <div class="candle" onclick="blowCandle(this)">🔥</div>
-            </div>
-
             <!-- My Melody for cutting -->
             <img src="1000328907.png" id="my-melody" alt="My Melody">
         </div>
@@ -38,7 +30,7 @@
         </div>
     </div>
 
-    <!-- The '?v=3' forces the browser to discard the old button cache -->
-    <script src="script.js?v=3"></script>
+    <!-- The '?v=4' forces the phone browser to break cache and load the completely automatic sequence -->
+    <script src="script.js?v=4"></script>
 </body>
 </html>
