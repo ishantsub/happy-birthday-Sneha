@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background-image: url('cinna-bg.jpg'); /* Cinnamoroll Background */
+    background-size: cover;
+    background-position: center;
+    transition: background 1s ease-in-out;
+}
+
+#collage-bg {
+    display: none;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    /* We will use JS to populate this with image1.jpg to image10.jpg */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+}
+
+.collage-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#countdown-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ff6b81;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+#timer {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+#celebration-screen {
+    display: none;
+    height: 100vh;
+    position: relative;
+}
+
+.cake-scene {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    perspective: 1000px; /* 3D effect container */
+}
+
+#cake {
+    width: 400px;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+#cake:active {
+    transform: scale(0.95) rotateX(10deg); /* 3D press effect */
+}
+
+#candles {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+
+.candle {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: opacity 0.5s ease, transform 0.2s;
+}
+
+.candle:hover { transform: scale(1.2); }
+.blown-out { opacity: 0; pointer-events: none; }
+
+#my-melody {
+    position: absolute;
+    bottom: 0;
+    right: -200px;
+    width: 250px;
+    opacity: 0;
+    transition: all 1.5s ease-in-out;
+}
+
+.cut-animation {
+    right: 50px !important;
+    opacity: 1 !important;
+    transform: rotate(-15deg);
+}
+
+#gift-box {
+    display: none;
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    cursor: pointer;
+    animation: dropDown 2s forwards;
+    z-index: 10;
+}
+
+@keyframes dropDown {
+    to { top: 40%; }
+}
+
+#message-modal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ff4757;
+    font-weight: bold;
+    z-index: 20;
+    width: 80%;
+    max-width: 500px;
+    border: 5px solid #ff6b81;
+}

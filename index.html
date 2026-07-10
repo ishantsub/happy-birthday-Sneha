@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Chootu!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bg-music" src="back.mp3" loop></audio>
+
+    <!-- Photo Collage Background (Hidden initially) -->
+    <div id="collage-bg"></div>
+
+    <!-- Countdown Screen -->
+    <div id="countdown-screen">
+        <h1>Waiting for the special day...</h1>
+        <div id="timer"></div>
+        <button id="start-btn" style="display:none;" onclick="startCelebration()">Enter Celebration!</button>
+    </div>
+
+    <!-- Main Celebration Screen (Hidden initially) -->
+    <div id="celebration-screen">
+        <div class="cake-scene">
+            <img src="1000328906.png" id="cake" alt="Birthday Cake">
+            
+            <!-- Interactive Candles -->
+            <div id="candles">
+                <div class="candle" onclick="blowCandle(this)">🔥</div>
+                <div class="candle" onclick="blowCandle(this)">🔥</div>
+                <div class="candle" onclick="blowCandle(this)">🔥</div>
+            </div>
+
+            <!-- My Melody for cutting -->
+            <img src="1000328907.png" id="my-melody" alt="My Melody">
+        </div>
+
+        <!-- Falling Gift Box -->
+        <img src="giftbox.png" id="gift-box" onclick="openGift()" alt="Gift Box">
+
+        <!-- Personal Message -->
+        <div id="message-modal">
+            <p>"happy birthday chootu I know will not be there for the cake cutting like you were so I made this hope you like it"</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
