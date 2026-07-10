@@ -1,17 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    overflow: hidden;
     background-image: url('cinna-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
     width: 100vw;
-    transition: background 1s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
+/* Photo Collage Layer */
 #collage-bg {
     display: none;
     position: absolute;
@@ -20,122 +28,162 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 5px;
+    gap: 4px;
+    padding: 4px;
     opacity: 0;
-    transition: opacity 2s ease-in;
-    box-sizing: border-box;
-    padding: 10px;
+    transition: opacity 1.5s ease-in-out;
+    background-color: #ffeaa7;
 }
 
 .collage-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
-#celebration-screen {
+/* Interactive elements layer */
+#main-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+#heading {
+    color: #ff4757;
+    text-shadow: 2px 2px 4px white, -2px -2px 4px white;
+    font-size: 2rem;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Centering the Cake & My Melody */
+.cake-area {
     position: relative;
     width: 100%;
-    height: 100vh;
-    z-index: 5;
-}
-
-.cake-container {
-    position: absolute;
-    bottom: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
+    max-width: 400px;
+    height: 280px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    z-index: 10;
-    pointer-events: none;
+    align-items: flex-end;
+    margin-bottom: 10px;
 }
 
 #cake {
-    width: 320px;
-    max-width: 80vw;
+    width: 250px;
+    max-width: 60vw;
     height: auto;
-    object-fit: contain;
+    z-index: 11;
 }
 
-/* My Melody is positioned relative to the screen to display perfectly on mobile */
 #my-melody {
     position: absolute;
-    bottom: 5%;
-    right: -320px; /* Hidden off-screen initially */
-    width: 250px;
-    max-width: 50vw;
+    bottom: 0;
+    right: -250px; /* Off-screen initially */
+    width: 180px;
+    max-width: 45vw;
     height: auto;
     opacity: 0;
-    transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 20;
+    transition: all 1.2s ease-in-out;
+    z-index: 12;
 }
 
-.cut-animation {
-    right: 10%!important;
+.melody-in {
+    right: 10px!important;
     opacity: 1!important;
     transform: rotate(-10deg);
 }
 
+/* Massive, easy-to-tap button */
+#action-btn {
+    background-color: #ff6b81;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 129, 0.5);
+    margin-bottom: 40px;
+    transition: transform 0.2s;
+    display: block;
+}
+
+#action-btn:active {
+    transform: scale(0.95);
+}
+
+/* Gift Box */
 #gift-box {
     display: none;
     position: absolute;
-    top: -250px;
+    top: -200px;
     left: 50%;
     transform: translateX(-50%);
-    width: 150px;
-    max-width: 35vw;
+    width: 130px;
     cursor: pointer;
-    z-index: 100;
+    z-index: 50;
 }
 
-/* Smooth realistic physics drop effect */
-@keyframes dropDown {
-    0% {
-        top: -250px;
-    }
-    70% {
-        top: 40%;
-        transform: translateX(-50%) scaleY(0.9);
-    }
-    85% {
-        top: 35%;
-        transform: translateX(-50%) scaleY(1.05);
-    }
-    100% {
-        top: 38%;
-        transform: translateX(-50%) scaleY(1);
-    }
-}
-
-.gift-drop {
+.gift-active {
     display: block!important;
-    animation: dropDown 1.8s forwards ease-out;
+    animation: dropGift 1.5s forwards ease-out;
 }
 
-#message-modal {
+@keyframes dropGift {
+    to {
+        top: 35%;
+    }
+}
+
+/* Modal message box */
+#message-popup {
     display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.98);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    font-size: 1.3rem;
-    color: #ff4757;
-    font-weight: bold;
-    z-index: 200;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
     width: 85%;
-    max-width: 450px;
+    max-width: 400px;
+    text-align: center;
     border: 5px solid #ff6b81;
-    box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content p {
+    color: #ff4757;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.popup-content button {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
 }
