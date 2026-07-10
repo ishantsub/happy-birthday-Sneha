@@ -1,11 +1,11 @@
-// 1. Start the Celebration instantly on click
+// 1. Start the Celebration instantly when button is clicked
 function startCelebration() {
     document.getElementById("countdown-screen").style.display = "none";
     document.getElementById("celebration-screen").style.display = "block";
     
-    // Play back.mp3 safely
+    // Play back.mp3 audio smoothly
     const audio = document.getElementById("bg-music");
-    audio.play().catch(error => console.log("Audio playback delayed until user interaction"));
+    audio.play().catch(error => console.log("Audio waiting for user tap interaction"));
 }
 
 // 2. Interactive Candle Blowing
@@ -17,26 +17,27 @@ function blowCandle(element) {
         element.classList.add("blown-out");
         candlesBlown++;
 
-        // Once all candles are tapped (blown out), trigger the cutting sequence
+        // Once all 3 candles are blown out, trigger the cutting sequence
         if (candlesBlown === totalCandles) {
             setTimeout(cutCake, 1000);
         }
     }
 }
 
-// 3. Cake Cutting & Background Swap
+// 3. Cake Cutting & Background Swap to Collage
 function cutCake() {
     const melody = document.getElementById("my-melody");
     melody.classList.add("cut-animation"); 
 
     setTimeout(() => {
-        // Swap background
+        // Remove standard background template
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundColor = "#ffeaa7";
 
-        // Generate and Show Collage
+        // Generate the 10-photo grid from the 'chootu' folder
         const collageBg = document.getElementById("collage-bg");
-        collageBg.innerHTML = ""; // Clear duplicates
+        collageBg.innerHTML = ""; 
+        
         for (let i = 1; i <= 10; i++) {
             const img = document.createElement("img");
             img.src = chootu/image${i}.jpg; 
@@ -46,7 +47,7 @@ function cutCake() {
         collageBg.style.display = "grid";
         setTimeout(() => { collageBg.style.opacity = "1"; }, 100);
 
-        // Drop the Gift Box
+        // Bring down the falling gift box asset
         setTimeout(() => {
             document.getElementById("gift-box").style.display = "block";
         }, 1500);
@@ -54,7 +55,7 @@ function cutCake() {
     }, 2000); 
 }
 
-// 4. Open Personal Message
+// 4. Open Personal Birthday Message
 function openGift() {
     document.getElementById("gift-box").style.display = "none";
     document.getElementById("message-modal").style.display = "block";
