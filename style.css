@@ -13,7 +13,7 @@ body {
     display: none;
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 1; /* Sits behind elements but above body */
+    z-index: 1;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -49,36 +49,7 @@ body {
 #cake {
     width: 400px;
     max-width: 90vw;
-    transition: transform 0.5s ease;
     z-index: 10;
-}
-
-#candles {
-    position: absolute;
-    top: -40px; /* Positions candles right above the cake top layer */
-    display: flex;
-    gap: 25px;
-    z-index: 99999; /* Forces the candles to the very, very front layer */
-    pointer-events: auto; /* Ensures the touch registration works */
-}
-
-.candle {
-    font-size: 3rem; /* Makes the tap area significantly larger for phone screens */
-    cursor: pointer;
-    padding: 10px; /* Creates an invisible safety padding to easily catch finger taps */
-    transition: opacity 0.4s ease, transform 0.2s;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-.candle:active {
-    transform: scale(0.8);
-}
-
-.blown-out {
-    opacity: 0 !important;
-    visibility: hidden;
-    pointer-events: none !important;
 }
 
 #my-melody {
