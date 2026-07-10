@@ -1,64 +1,80 @@
-let musicStarted = false;
-
-// 1. Unblock Audio safely on screen tap
-function startMusic() {
-    if (!musicStarted) {
-        const audio = document.getElementById("bg-music");
-        audio.play()
-           .then(() => { musicStarted = true; })
-           .catch(error => console.log("Audio waiting for screen interaction..."));
+function handleStart() {
+    // 1. Play background audio instantly
+    var audio = document.getElementById("bg-music");
+    if (audio) {
+        audio.play().catch(function(error) {
+            console.log("Audio play blocked: ", error);
+        });
     }
-}
 
-// 2. Trigger the Cake Cutting Sequence Automatically 1.5 seconds after page loads
-window.addEventListener("DOMContentLoaded", () => {
-    setTimeout(cutCake, 1500);
-});
+    // 2. Hide start button so the user cannot double-click it
+    var btn = document.getElementById("action-btn");
+    if (btn) {
+        btn.style.display = "none";
+    }
 
-// 3. Automatic Cake Cutting & Background Swap to Collage
-function cutCake() {
-    const melody = document.getElementById("my-melody");
-    melody.classList.add("cut-animation"); 
+    // 3. Make My Melody slide in to cut the cake
+    var melody = document.getElementById("my-melody");
+    if (melody) {
+        melody.classList.add("melody-in");
+    }
 
-    setTimeout(() => {
-        // Remove standard background template
+    // 4. Wait 2.5 seconds for cutting animation, then show photo collage
+    setTimeout(function() {
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundColor = "#ffeaa7";
 
-        // Generate the 10-photo grid from the 'chootu' folder
-        const collageBg = document.getElementById("collage-bg");
-        collageBg.innerHTML = ""; 
-        
-        for (let i = 1; i <= 10; i++) {
-            const img = document.createElement("img");
-            img.className = "collage-img";
+        var collageBg = document.getElementById("collage-bg");
+        if (collageBg) {
+            collageBg.innerHTML = ""; // Clear duplicates
             
-            // Smart fallback strategy: Attempt to load.jpg, but if it fails, try.png
-            // This automatically handles 'image7.png' in your folder!
-            img.src = chootu/image${i}.jpg;
-            img.onerror = function() {
-                if (this.src.endsWith('.jpg')) {
-                    this.src = chootu/image${i}.png;
-                }
-            };
-            
-            collageBg.appendChild(img);
-        }
-        collageBg.style.display = "grid";
-        setTimeout(() => { collageBg.style.opacity = "1"; }, 100);
+            for (var i = 1; i <= 10; i++) {
+                var img = document.createElement("img");
+                img.className = "collage-img";
+                
+                // Try.jpg first (relative paths only)
+                img.src = "chootu/image" + i + ".jpg";
+                
+                // Smart fallback check: If image fails, switch automatically to.png
+                // This will perfectly display image7.png from your screenshot!
+                img.onerror = (function(index) {
+                    return function() {
+                        if (this.src.indexOf(".jpg")!== -1) {
+                            this.src = "chootu/image" + index + ".png";
+                        }
+                    };
+                })(i);
 
-        // Drop the falling gift box asset
-        setTimeout(() => {
-            const giftBox = document.getElementById("gift-box");
-            giftBox.classList.add("gift-drop");
+                collageBg.appendChild(img);
+            }
+            
+            collageBg.style.display = "grid";
+            setTimeout(function() {
+                collageBg.style.opacity = "1";
+            }, 50);
+        }
+
+        // 5. Drop the falling gift box 1.5 seconds after collage loads
+        setTimeout(function() {
+            var gift = document.getElementById("gift-box");
+            if (gift) {
+                gift.classList.add("gift-active");
+            }
         }, 1500);
 
-    }, 2200); // Give Melody enough time to slide in fully
+    }, 2500);
 }
 
-// 4. Open Personal Birthday Message
-function openGift(event) {
-    if (event) event.stopPropagation(); // Stop click from restarting music logic
-    document.getElementById("gift-box").style.display = "none";
-    document.getElementById("message-modal").style.display = "block";
+function showMessage() {
+    var popup = document.getElementById("message-popup");
+    if (popup) {
+        popup.style.display = "flex";
+    }
+}
+
+function closeMessage() {
+    var popup = document.getElementById("message-popup");
+    if (popup) {
+        popup.style.display = "none";
+    }
 }
