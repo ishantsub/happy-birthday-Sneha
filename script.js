@@ -1,24 +1,15 @@
-// 1. Interactive Candle Blowing & Music Trigger
-let candlesBlown = 0;
-const totalCandles = 3;
-
-function blowCandle(element) {
-    // Try to trigger audio on the very first user interaction (tap)
+// 1. Unblock Audio on screen tap
+function startMusic() {
     const audio = document.getElementById("bg-music");
     audio.play().catch(error => console.log("Audio playing..."));
-
-    if (!element.classList.contains("blown-out")) {
-        element.classList.add("blown-out");
-        candlesBlown++;
-
-        // Once all 3 candles are blown out, trigger the cutting sequence
-        if (candlesBlown === totalCandles) {
-            setTimeout(cutCake, 1000);
-        }
-    }
 }
 
-// 2. Cake Cutting & Background Swap to Collage
+// 2. Trigger the Cake Cutting Sequence Automatically 1.5 seconds after page loads
+window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(cutCake, 1500);
+});
+
+// 3. Automatic Cake Cutting & Background Swap to Collage
 function cutCake() {
     const melody = document.getElementById("my-melody");
     melody.classList.add("cut-animation"); 
@@ -41,7 +32,7 @@ function cutCake() {
         collageBg.style.display = "grid";
         setTimeout(() => { collageBg.style.opacity = "1"; }, 100);
 
-        // Bring down the falling gift box asset
+        // Drop the falling gift box asset
         setTimeout(() => {
             document.getElementById("gift-box").style.display = "block";
         }, 1500);
@@ -49,7 +40,7 @@ function cutCake() {
     }, 2000); 
 }
 
-// 3. Open Personal Birthday Message
+// 4. Open Personal Birthday Message
 function openGift() {
     document.getElementById("gift-box").style.display = "none";
     document.getElementById("message-modal").style.display = "block";
