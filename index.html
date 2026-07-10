@@ -13,14 +13,8 @@
     <!-- Photo Collage Background (Hidden initially) -->
     <div id="collage-bg"></div>
 
-    <!-- Simple Entry Screen -->
-    <div id="countdown-screen">
-        <h1>Welcome to the Celebration! 🎉</h1>
-        <button id="start-btn" onclick="startCelebration()">Open Surprise</button>
-    </div>
-
-    <!-- Main Celebration Screen (Hidden initially) -->
-    <div id="celebration-screen">
+    <!-- Main Celebration Screen (Visible immediately) -->
+    <div id="celebration-screen" style="display: block;">
         <div class="cake-scene">
             <img src="1000328906.png" id="cake" alt="Birthday Cake">
             
@@ -44,7 +38,7 @@
         </div>
     </div>
 
-    <!-- The '?v=2' forces the phone browser to clear its cache and load the new code -->
-    <script src="script.js?v=2"></script>
+    <!-- The '?v=3' forces the browser to discard the old button cache -->
+    <script src="script.js?v=3"></script>
 </body>
 </html>
