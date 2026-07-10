@@ -4,33 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Chootu!</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body onclick="startMusic()">
-    <!-- Background Music -->
     <audio id="bg-music" src="back.mp3" loop></audio>
 
-    <!-- Photo Collage Background (Hidden initially) -->
     <div id="collage-bg"></div>
 
-    <!-- Main Celebration Screen -->
-    <div id="celebration-screen" style="display: block;">
-        <div class="cake-scene">
+    <div id="celebration-screen">
+        <div class="cake-container">
             <img src="1000328906.png" id="cake" alt="Birthday Cake">
-            <!-- My Melody for cutting -->
-            <img src="1000328907.png" id="my-melody" alt="My Melody">
         </div>
 
-        <!-- Falling Gift Box -->
-        <img src="giftbox.png" id="gift-box" onclick="openGift()" alt="Gift Box">
+        <img src="1000328907.png" id="my-melody" alt="My Melody">
 
-        <!-- Personal Message -->
+        <img src="giftbox.png" id="gift-box" onclick="openGift(event)" alt="Gift Box">
+
         <div id="message-modal">
             <p>"happy birthday chootu I know will not be there for the cake cutting like you were so I made this hope you like it"</p>
         </div>
     </div>
 
-    <!-- The '?v=4' forces the phone browser to break cache and load the completely automatic sequence -->
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
 </body>
 </html>
