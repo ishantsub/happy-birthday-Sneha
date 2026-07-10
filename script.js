@@ -1,7 +1,13 @@
-// 1. Unblock Audio on screen tap
+let musicStarted = false;
+
+// 1. Unblock Audio safely on screen tap
 function startMusic() {
-    const audio = document.getElementById("bg-music");
-    audio.play().catch(error => console.log("Audio playing..."));
+    if (!musicStarted) {
+        const audio = document.getElementById("bg-music");
+        audio.play()
+           .then(() => { musicStarted = true; })
+           .catch(error => console.log("Audio waiting for screen interaction..."));
+    }
 }
 
 // 2. Trigger the Cake Cutting Sequence Automatically 1.5 seconds after page loads
@@ -25,8 +31,17 @@ function cutCake() {
         
         for (let i = 1; i <= 10; i++) {
             const img = document.createElement("img");
-            img.src = chootu/image${i}.jpg; 
             img.className = "collage-img";
+            
+            // Smart fallback strategy: Attempt to load.jpg, but if it fails, try.png
+            // This automatically handles 'image7.png' in your folder!
+            img.src = chootu/image${i}.jpg;
+            img.onerror = function() {
+                if (this.src.endsWith('.jpg')) {
+                    this.src = chootu/image${i}.png;
+                }
+            };
+            
             collageBg.appendChild(img);
         }
         collageBg.style.display = "grid";
@@ -34,14 +49,16 @@ function cutCake() {
 
         // Drop the falling gift box asset
         setTimeout(() => {
-            document.getElementById("gift-box").style.display = "block";
+            const giftBox = document.getElementById("gift-box");
+            giftBox.classList.add("gift-drop");
         }, 1500);
 
-    }, 2000); 
+    }, 2200); // Give Melody enough time to slide in fully
 }
 
 // 4. Open Personal Birthday Message
-function openGift() {
+function openGift(event) {
+    if (event) event.stopPropagation(); // Stop click from restarting music logic
     document.getElementById("gift-box").style.display = "none";
     document.getElementById("message-modal").style.display = "block";
 }
