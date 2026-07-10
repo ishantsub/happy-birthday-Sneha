@@ -1,18 +1,12 @@
-// 1. Start the Celebration instantly when button is clicked
-function startCelebration() {
-    document.getElementById("countdown-screen").style.display = "none";
-    document.getElementById("celebration-screen").style.display = "block";
-    
-    // Play back.mp3 audio smoothly
-    const audio = document.getElementById("bg-music");
-    audio.play().catch(error => console.log("Audio waiting for user tap interaction"));
-}
-
-// 2. Interactive Candle Blowing
+// 1. Interactive Candle Blowing & Music Trigger
 let candlesBlown = 0;
 const totalCandles = 3;
 
 function blowCandle(element) {
+    // Try to trigger audio on the very first user interaction (tap)
+    const audio = document.getElementById("bg-music");
+    audio.play().catch(error => console.log("Audio playing..."));
+
     if (!element.classList.contains("blown-out")) {
         element.classList.add("blown-out");
         candlesBlown++;
@@ -24,7 +18,7 @@ function blowCandle(element) {
     }
 }
 
-// 3. Cake Cutting & Background Swap to Collage
+// 2. Cake Cutting & Background Swap to Collage
 function cutCake() {
     const melody = document.getElementById("my-melody");
     melody.classList.add("cut-animation"); 
@@ -55,7 +49,7 @@ function cutCake() {
     }, 2000); 
 }
 
-// 4. Open Personal Birthday Message
+// 3. Open Personal Birthday Message
 function openGift() {
     document.getElementById("gift-box").style.display = "none";
     document.getElementById("message-modal").style.display = "block";
