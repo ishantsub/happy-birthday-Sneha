@@ -4,27 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Chootu!</title>
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=10">
 </head>
-<body onclick="startMusic()">
-    <audio id="bg-music" src="back.mp3" loop></audio>
+<body>
+    <audio id="bg-music" src="back.mp3" loop preload="auto"></audio>
 
     <div id="collage-bg"></div>
 
-    <div id="celebration-screen">
-        <div class="cake-container">
-            <img src="1000328906.png" id="cake" alt="Birthday Cake">
+    <div id="main-container">
+        <h1 id="heading">Happy Birthday Chootu! 🥳</h1>
+
+        <div class="cake-area">
+            <img src="1000328906.png" id="cake" alt="Cake">
+            <img src="1000328907.png" id="my-melody" alt="My Melody">
         </div>
 
-        <img src="1000328907.png" id="my-melody" alt="My Melody">
+        <button id="action-btn" onclick="handleStart()">Tap to Play & Cut Cake! 🎂</button>
 
-        <img src="giftbox.png" id="gift-box" onclick="openGift(event)" alt="Gift Box">
+        <img src="giftbox.png" id="gift-box" onclick="showMessage()" alt="Gift Box">
 
-        <div id="message-modal">
-            <p>"happy birthday chootu I know will not be there for the cake cutting like you were so I made this hope you like it"</p>
+        <div id="message-popup">
+            <div class="popup-content">
+                <p>"happy birthday chootu I know will not be there for the cake cutting like you were so I made this hope you like it"</p>
+                <button onclick="closeMessage()">Close ❤️</button>
+            </div>
         </div>
     </div>
 
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=10"></script>
 </body>
 </html>
